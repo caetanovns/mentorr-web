@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Star from "../Star";
 
 function Testimonial(props: {
@@ -33,11 +34,22 @@ function TestimonialItem({
     person: { name: string; role: string; photo: string };
   };
 }) {
+
+  const [rating, setRating] = useState(item.rating);
+
+  const handleMessage = (rating: number) => {
+    setRating(rating);
+  };
+
   return (
     <div className="hidden duration-700 ease-in-out" data-carousel-item>
       <div className="container mx-auto flex flex-col gap-8">
         <div>
-          <Star rating={item.rating} is_small={false}/>
+          <Star
+            rating={rating}
+            is_small={false}
+            mouseClick={handleMessage}
+          />
         </div>
 
         <div>
