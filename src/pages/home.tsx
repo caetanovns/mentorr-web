@@ -27,6 +27,7 @@ function Home() {
                 rating={dev.rating}
                 skills={dev.skills}
                 photo={dev.photo}
+                key={dev.id}
               />
             ))}
           </div>

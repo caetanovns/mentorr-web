@@ -16,7 +16,7 @@ function Testimonial(props: {
       >
         <div className="relative h-56 overflow-hidden rounded-lg">
           {props.testimonials.map((item) => (
-            <TestimonialItem item={item} />
+            <TestimonialItem item={item} key={item.person.name} />
           ))}
         </div>
       </div>

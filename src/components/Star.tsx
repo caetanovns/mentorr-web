@@ -3,6 +3,7 @@ function Star({ rating, is_small }: { rating: number; is_small: boolean }) {
     <figure className="flex">
       {[...Array(5)].map((_, index) => (
         <svg
+          key={index}
           width={is_small ? "16" : "31"}
           height={is_small ? "16" : "31"}
           viewBox={is_small ? "0 0 31 31" : "0 0 31 31"}
