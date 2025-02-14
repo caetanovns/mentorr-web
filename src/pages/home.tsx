@@ -51,7 +51,7 @@ function Hero() {
           <span className="underline decoration-dashed decoration-blue-600">
             especializada
           </span>{" "}
-          1 para 2
+          1 para 1
         </h1>
         <h2 className="text-md md:text-xl text-gray-600">
           Encontre um mentor hoje:
