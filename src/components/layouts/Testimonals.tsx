@@ -9,15 +9,26 @@ function Testimonial(props: {
   }[];
 }) {
   return (
-    <section className="bg-slate-200 px-8 md:px-0 py-14">
+    <section className="bg-slate-200 px-8 md:px-0">
       <div
         id="default-carousel"
-        className="relative w-full"
-        data-carousel="slide"
+        className="relative w-full p-14"
+        data-carousel="static"
       >
         <div className="relative h-56 overflow-hidden rounded-lg">
           {props.testimonials.map((item) => (
             <TestimonialItem item={item} key={item.person.name} />
+          ))}
+        </div>
+        <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+          {props.testimonials.map((item, index) => (
+            <button
+              type="button"
+              className="w-3 h-3 rounded-full"
+              aria-current="true"
+              aria-label={item.testimonial}
+              data-carousel-slide-to={index}
+            ></button>
           ))}
         </div>
       </div>
@@ -34,7 +45,6 @@ function TestimonialItem({
     person: { name: string; role: string; photo: string };
   };
 }) {
-
   const [rating, setRating] = useState(item.rating);
 
   const handleMessage = (rating: number) => {
@@ -45,11 +55,7 @@ function TestimonialItem({
     <div className="hidden duration-700 ease-in-out" data-carousel-item>
       <div className="container mx-auto flex flex-col gap-8">
         <div>
-          <Star
-            rating={rating}
-            is_small={false}
-            mouseClick={handleMessage}
-          />
+          <Star rating={rating} is_small={false} mouseClick={handleMessage} />
         </div>
 
         <div>
