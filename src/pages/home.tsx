@@ -3,15 +3,46 @@ import Footer from "../components/layouts/Footer";
 import Header from "../components/layouts/Header";
 import Testimonial from "../components/layouts/Testimonals";
 import CardTutorSmall from "../components/tutor/CardTutorSmall";
-import developers from "../mocks/tutores.json";
+// import developers from "../mocks/tutores.json";
 import testimonials from "../mocks/testimonials.json";
+import { useEffect, useState } from "react";
+
+type Tutor = {
+  id: number;
+  name: string;
+  role: string;
+  rating: number;
+  photo: string;
+  skills: string[];
+};
 
 function Home() {
+  const [tutores, setTutores] = useState<Tutor[]>([]);
+  
+  // COMO NÃO FAZER 
+  /*
+  fetch(
+    "https://my-json-server.typicode.com/caetanovns/mentorr-fake-json/tutores"
+  )
+    .then((res) => res.json())
+    .then((data : Tutor[]) => setTutores(data));
+  */
+
+  // ALGO DESSE TIPO
+  useEffect(() => {
+    fetch(
+      "https://my-json-server.typicode.com/caetanovns/mentorr-fake-json/tutores"
+    )
+      .then((res) => res.json())
+      .then((data : Tutor[]) => setTutores(data));
+    console.log("busca tutores")
+  }, []);
+
   return (
     <>
       <Header />
       <Hero />
-      <Testimonial testimonials={testimonials}/>
+      <Testimonial testimonials={testimonials} />
       <section className="px-8 md:px-0">
         <div className="container mx-auto py-14">
           <h2 className="text-3xl font-bold text-slate-900">
@@ -20,7 +51,7 @@ function Home() {
         </div>
         <div className="container mx-auto pb-14">
           <div className="grid md:grid-cols-3 gap-6">
-            {developers.map((dev) => (
+            {tutores?.map((dev) => (
               <CardTutorSmall
                 name={dev.name}
                 role={dev.role}
