@@ -33,16 +33,38 @@ function Buscar() {
   const [cargos] = useState(cargos_data);
   const [areas] = useState(areas_data);
 
-  useEffect(() => {
-    fetch("https://my-json-server.typicode.com/caetanovns/mentorr-fake-json/mentores")
-    .then((res) => res.json())
-    .then((data) => setMentores(data));
-  }, []);
+  // const [habilidade, setHabilidade] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [query] = useSearchParams();
 
-  console.log(query.get("habilidade"));
+  useEffect(() => {
+    setLoading(true);
+    setMentores([]);
+    fetch(
+      `https://my-json-server.typicode.com/caetanovns/mentorr-fake-json/mentores?habilidade_principal=${query.get(
+        "habilidade"
+      )}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setMentores(data);
+        setLoading(false);
+      });
+  }, [query]);
+  /*
+  useEffect(() => {
+    fetch(
+      `https://my-json-server.typicode.com/caetanovns/mentorr-fake-json/mentores?habilidade_principal=${habilidade}`
+    )
+      .then((res) => res.json())
+      .then((data) => setMentores(data));
+  }, [habilidade]);
 
+  useEffect(() => {
+    setHabilidade(query.get("habilidade") ?? '');
+  }, [query]);
+  */
   return (
     <>
       <section>
@@ -149,14 +171,29 @@ function Buscar() {
             </div>
           </div>
           <div id="mentor-container" className="flex flex-col md:w-2/3 gap-6">
-            {mentores.map((mentor) => (
-              <CardMentor key={mentor.id!} mentor={mentor} />
-            ))}
+            {loading ? (
+              <Loading />
+            ) : mentores.length > 0 ? (
+              mentores.map((mentor) => (
+                <CardMentor key={mentor.id!} mentor={mentor} />
+              ))
+            ) : (
+              <div
+                className="p-4 mb-4 text-sm text-center text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300"
+                role="alert"
+              >
+                <span className="font-medium">Nenhum Mentor Disponível</span>
+              </div>
+            )}
           </div>
         </div>
       </section>
     </>
   );
+}
+
+function Loading() {
+  return <p className="text-gray-900 Text-lg dark:text-white">CARREGANDO...</p>;
 }
 
 export default Buscar;

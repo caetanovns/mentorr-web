@@ -22,7 +22,7 @@ function CardMentor(props) {
         </div>
         <span className="text-slate-600">
           {props.mentor.cargo && props.mentor.empresa
-            ? `${props.mentor.cargo.nome} na ${props.mentor.empresa.nome}`
+            ? `${props.mentor.cargo.name} na ${props.mentor.empresa.name}`
             : ""}
         </span>
         <figure>
