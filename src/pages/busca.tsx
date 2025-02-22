@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import lupa from "../assets/lupa.svg";
-import Header from "../components/layouts/Header";
-import Footer from "../components/layouts/Footer";
 import CardMentor from "../components/layouts/CardMentor";
+import { useParams } from "react-router-dom";
 
 function Buscar() {
   const areas_data = [
@@ -79,13 +78,14 @@ function Buscar() {
   const [cargos] = useState(cargos_data);
   const [areas] = useState(areas_data);
 
-  useEffect(() => {
-    
-  }, []);
+  useEffect(() => {}, []);
+
+  const {categoria} = useParams();
+
+  console.log(categoria);
 
   return (
     <>
-      <Header />
       <section>
         <div className="container mx-auto flex flex-col md:flex-row md:gap-16 py-4">
           <div className="flex flex-col md:w-1/3 md:p-0 p-6 gap-10">
@@ -196,7 +196,6 @@ function Buscar() {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 }

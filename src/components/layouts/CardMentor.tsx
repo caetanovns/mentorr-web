@@ -2,6 +2,7 @@ import Star from "../Star";
 import dollar from "../../assets/dollar.svg";
 import checked from "../../assets/verified.svg";
 import SkillBadge from '../badges/SkillBadge';
+import { Link } from "react-router-dom";
 
 function CardMentor(props) {
   return (
@@ -48,9 +49,7 @@ function CardMentor(props) {
               <span className="text-sm font-medium">/mês</span>
             </span>
           </div>
-          <button className="px-6 py-3 bg-blue-600 text-white font-bold rounded-lg">
-            Ver perfil completo
-          </button>
+          <Link className="px-6 py-3 bg-blue-600 text-white font-bold rounded-lg" to={`perfil/${props.mentor.id}`}>Ver perfil completo</Link>
         </div>
       </div>
     </div>

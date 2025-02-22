@@ -1,6 +1,5 @@
+import { Link } from "react-router-dom";
 import SkillBadge from "../components/badges/SkillBadge";
-import Footer from "../components/layouts/Footer";
-import Header from "../components/layouts/Header";
 import Testimonial from "../components/layouts/Testimonals";
 import CardTutorSmall from "../components/tutor/CardTutorSmall";
 // import developers from "../mocks/tutores.json";
@@ -18,8 +17,8 @@ type Tutor = {
 
 function Home() {
   const [tutores, setTutores] = useState<Tutor[]>([]);
-  
-  // COMO NÃO FAZER 
+
+  // COMO NÃO FAZER
   /*
   fetch(
     "https://my-json-server.typicode.com/caetanovns/mentorr-fake-json/tutores"
@@ -34,13 +33,12 @@ function Home() {
       "https://my-json-server.typicode.com/caetanovns/mentorr-fake-json/tutores"
     )
       .then((res) => res.json())
-      .then((data : Tutor[]) => setTutores(data));
-    console.log("busca tutores")
+      .then((data: Tutor[]) => setTutores(data));
+    //console.log("busca tutores");
   }, []);
 
   return (
     <>
-      <Header />
       <Hero />
       <Testimonial testimonials={testimonials} />
       <section className="px-8 md:px-0">
@@ -65,7 +63,6 @@ function Home() {
         </div>
       </section>
       <Pricing />
-      <Footer />
     </>
   );
 }
@@ -156,9 +153,12 @@ function Pricing() {
           <button className="bg-blue-600 px-12 font-bold py-4 rounded-lg hover:bg-blue-700">
             Quero ser Mentorr
           </button>
-          <button className="font-bold border border-blue-600 px-12 py-4 rounded-lg hover:bg-blue-600">
+          <Link
+            to="/buscar"
+            className="font-bold border border-blue-600 px-12 py-4 rounded-lg hover:bg-blue-600"
+          >
             Quero ser aluno
-          </button>
+          </Link>
         </div>
         <p className="text-slate-300">Não é necessário cartão de crédito.</p>
       </div>
