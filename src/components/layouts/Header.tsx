@@ -50,28 +50,28 @@ function HeaderMenu() {
         <nav className="hidden md:block">
           <ul className="flex justify-between">
             <li>
-              <Link to={`/buscar/${"ux%2Fui"}`}>UX/UI</Link>
+              <Link to={`/buscar?habilidade=${"ux/ui"}`}>UX/UI</Link>
             </li>
             <li>
-              <Link to={`/buscar/${"front-end"}`}>Front-end</Link>
+              <Link to={`/buscar?habilidade=${"front-end"}`}>Front-end</Link>
             </li>
             <li>
-              <Link to={`/buscar/${"back-end"}`}>Back-end</Link>
+              <Link to={`/buscar?habilidade=${"back-end"}`}>Back-end</Link>
             </li>
             <li>
-              <Link to={`/buscar/${"dev-ops"}`}>DevOps</Link>
+              <Link to={`/buscar?habilidade=${"dev-ops"}`}>DevOps</Link>
             </li>
             <li>
-              <Link to={`/buscar/${"agile"}`}>Agile</Link>
+              <Link to={`/buscar?habilidade=${"agile"}`}>Agile</Link>
             </li>
             <li>
-              <Link to={`/buscar/${"cloud Computing"}`}>Cloud Computing</Link>
+              <Link to={`/buscar?habilidade=${"cloud Computing"}`}>Cloud Computing</Link>
             </li>
             <li>
-              <Link to={`/buscar/${"Inteligência Artificial"}`}>Inteligência Artificial</Link>
+              <Link to={`/buscar?habilidade=${"Inteligência Artificial"}`}>Inteligência Artificial</Link>
             </li>
             <li>
-              <Link to={`/buscar/${"Segurança da Informação"}`}>Segurança da Informação</Link>
+              <Link to={`/buscar?habilidade=${"Segurança da Informação"}`}>Segurança da Informação</Link>
             </li>
           </ul>
         </nav>

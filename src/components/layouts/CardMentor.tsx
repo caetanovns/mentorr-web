@@ -34,7 +34,7 @@ function CardMentor(props) {
         </figure>
         <p className="text-sm text-justify">{props.mentor.biografia}</p>
         <div className="mx-auto m-4">
-            <SkillBadge skills={props.mentor.habilidades?.map((habilidade) => habilidade.nome) ?? []} is_small={true} />
+            <SkillBadge skills={props.mentor.habilidades?.map((habilidade) => habilidade.name) ?? []} is_small={true} />
         </div>
         <div className="flex justify-between">
           <div className="flex gap-1 items-center">

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import lupa from "../assets/lupa.svg";
 import CardMentor from "../components/layouts/CardMentor";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 function Buscar() {
   const areas_data = [
@@ -28,61 +28,20 @@ function Buscar() {
     { id: 5, nome: "Professor" },
   ];
 
-  const mentores_data = [
-    {
-      id: 2,
-      user: { name: "Ana Silva" },
-      cargo: { nome: "CTO" },
-      empresa: { nome: "Tech Solutions" },
-      curriculo: "www.anasilva.com/cv",
-      biografia:
-        "Especialista em desenvolvimento de sistemas e inovação tecnológica.",
-      preco: 22.5,
-      avaliacao: 4.7,
-      habilidades: [
-        { nome: "Python" },
-        { nome: "Django" },
-        { nome: "Laravel" },
-        { nome: "HTML" },
-        { nome: "JS" },
-      ],
-    },
-    {
-      id: 3,
-      user: { name: "Carlos Oliveira" },
-      cargo: { nome: "Gerente de TI" },
-      empresa: { nome: "InovaTech" },
-      curriculo: "www.carlosoliveira.com/cv",
-      biografia:
-        "Gestor de equipes e projetos de TI com 10 anos de experiência.",
-      preco: 18.0,
-      avaliacao: 4.5,
-      habilidades: [{ nome: "JavaScript" }, { nome: "Node.js" }],
-    },
-    {
-      id: 4,
-      user: { name: "Mariana Souza" },
-      cargo: { nome: "Analista de Sistemas" },
-      empresa: { nome: "Digital Hub" },
-      curriculo: "www.marianasouza.com/cv",
-      biografia:
-        "Analista com foco em melhorar a experiência do usuário e soluções tecnológicas.",
-      preco: 20.0,
-      avaliacao: 4.9,
-      habilidades: [{ nome: "React" }, { nome: "UX/UI Design" }],
-    },
-  ];
-
-  const [mentors] = useState(mentores_data);
+  const [mentores, setMentores] = useState([]);
   const [empresas] = useState(empresas_data);
   const [cargos] = useState(cargos_data);
   const [areas] = useState(areas_data);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    fetch("https://my-json-server.typicode.com/caetanovns/mentorr-fake-json/mentores")
+    .then((res) => res.json())
+    .then((data) => setMentores(data));
+  }, []);
 
-  const {categoria} = useParams();
+  const [query] = useSearchParams();
 
-  console.log(categoria);
+  console.log(query.get("habilidade"));
 
   return (
     <>
@@ -190,7 +149,7 @@ function Buscar() {
             </div>
           </div>
           <div id="mentor-container" className="flex flex-col md:w-2/3 gap-6">
-            {mentors.map((mentor) => (
+            {mentores.map((mentor) => (
               <CardMentor key={mentor.id!} mentor={mentor} />
             ))}
           </div>
